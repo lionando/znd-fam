@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ZND Login</title>
+
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  body {
+    height: 100vh;
+    background: linear-gradient(145deg, #0a0a0a, #121212);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+  }
+
+  .light {
+    position: absolute;
+    width: 350px;
+    height: 350px;
+    background: radial-gradient(circle, rgba(255,221,0,0.18) 0%, transparent 70%);
+    animation: drift 6.5s infinite alternate ease-in-out;
+    filter: blur(45px);
+  }
+
+  .light:nth-child(1) { top: -80px; left: -60px; }
+  .light:nth-child(2) { bottom: -80px; right: -60px; animation-delay: 1.8s; }
+
+  @keyframes drift {
+    from { transform: translateY(-20px); }
+    to { transform: translateY(40px); }
+  }
+
+  /* === LOGIN CARD === */
+  .card {
+    width: 360px;
+    padding: 32px;
+    background: rgba(20, 20, 20, 0.92);
+    border: 1px solid #2b2b2b;
+    border-radius: 20px;
+    backdrop-filter: blur(6px);
+    box-shadow: 0 0 25px rgba(255, 215, 0, 0.09);
+    animation: floatIn 1s ease;
+  }
+
+  @keyframes floatIn {
+    0% { opacity: 0; transform: translateY(25px) rotateX(12deg); }
+    100% { opacity: 1; transform: translateY(0) rotateX(0); }
+  }
+
+  .title {
+    text-align: center;
+    font-size: 2rem;
+    font-weight: 600;
+    color: #ffdd00;
+    margin-bottom: 6px;
+    text-shadow: 0 0 8px rgba(255, 221, 0, 0.45);
+  }
+
+  .subtitle {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #bdbdbd;
+    margin-bottom: 28px;
+  }
+
+  .input-group {
+    margin-bottom: 18px;
+    position: relative;
+  }
+
+  .input-group label {
+    color: #ffdd00;
+    font-size: 0.9rem;
+  }
+
+  .input-group input {
+    width: 100%;
+    padding: 13px 14px;
+    padding-right: 42px;
+    margin-top: 6px;
+    border-radius: 12px;
+    background: #1a1a1a;
+    border: 1px solid #292929;
+    color: white;
+    font-size: 0.95rem;
+    transition: 0.25s;
+    outline: none;
+  }
+
+  .input-group input:focus {
+    border-color: #ffdd00;
+    box-shadow: inset 0 0 10px rgba(255, 221, 0, 0.35);
+  }
+
+  /* === EYE ICON === */
+  .eye {
+    position: absolute;
+    right: 14px;
+    bottom: 12px;
+    width: 24px;
+    height: 24px;
+    cursor: pointer;
+    opacity: 0.75;
+    transition: 0.2s;
+  }
+
+  .eye:hover { opacity: 1; transform: scale(1.09); }
+
+  .eye svg {
+    width: 100%;
+    height: 100%;
+    stroke: #e7e7e7;
+    stroke-width: 2;
+    fill: none;
+  }
+
+  /* === LOGIN BUTTON === */
+  .btn {
+    width: 100%;
+    padding: 14px;
+    background: #2d2d2d;
+    border: none;
+    border-radius: 14px;
+    font-size: 1.05rem;
+    font-weight: 500;
+    color: #7a7a7a;
+    cursor: not-allowed;
+    transition: 0.3s ease;
+    position: relative;
+  }
+
+  .btn.active {
+    background: linear-gradient(135deg, #ffdd00, #ffb300);
+    color: #000;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(255,215,0,0.4);
+  }
+
+  .btn.active:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 10px 26px rgba(255, 221, 0, 0.55);
+  }
+
+  /* ERROR MESSAGE */
+  .error {
+    text-align: center;
+    margin-top: 10px;
+    color: #ff4e4e;
+    font-size: 0.88rem;
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div class="light"></div>
+<div class="light"></div>
+
+<div class="card">
+  <h2 class="title">ZND Login</h2>
+  <p class="subtitle">Masuk untuk melanjutkan</p>
+
+  <div class="input-group">
+    <label>Username</label>
+    <input type="text" id="username" placeholder="Masukkan username">
+  </div>
+
+  <div class="input-group">
+    <label>Password</label>
+    <input type="password" id="password" placeholder="Masukkan password">
+
+    <div class="eye" id="toggleEye">
+      <svg viewBox="0 0 24 24">
+        <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+        <circle cx="12" cy="12" r="3"></circle>
+      </svg>
+    </div>
+  </div>
+
+  <button id="loginBtn" class="btn" disabled>Masuk</button>
+
+  <div class="error" id="errorMsg">Password salah! Gunakan: zndfam</div>
+</div>
+
+<script>
+  const username = document.getElementById("username");
+  const password = document.getElementById("password");
+  const loginBtn = document.getElementById("loginBtn");
+  const toggleEye = document.getElementById("toggleEye");
+  const errorMsg = document.getElementById("errorMsg");
+
+  let eyeOpen = true;
+
+  function validate() {
+    const okUser = username.value.trim() !== "";
+    const okPass = password.value.trim() === "zndfam";
+
+    errorMsg.style.display = "none";
+
+    if (okUser && okPass) {
+      loginBtn.disabled = false;
+      loginBtn.classList.add("active");
+    } else {
+      loginBtn.disabled = true;
+      loginBtn.classList.remove("active");
+    }
+  }
+
+  username.addEventListener("input", validate);
+  password.addEventListener("input", validate);
+
+  loginBtn.addEventListener("click", () => {
+    if (password.value.trim() !== "zndfam") {
+      errorMsg.style.display = "block";
+      return;
+    }
+
+    window.location.href = "sudah-login.html";
+  });
+
+  toggleEye.addEventListener("click", () => {
+    if (eyeOpen) {
+      password.type = "text";
+      toggleEye.innerHTML = `
+        <svg viewBox="0 0 24 24">
+          <path d="M17.94 17.94A10.94 10.94 0 0 1 12 19c-7 0-11-7-11-7
+                   a21.68 21.68 0 0 1 5.07-5.94M9.88 9.88A3 3 0 0 1 14.12 14.12"></path>
+          <line x1="1" y1="1" x2="23" y2="23"></line>
+        </svg>
+      `;
+    } else {
+      password.type = "password";
+      toggleEye.innerHTML = `
+        <svg viewBox="0 0 24 24">
+          <path d="M1 12s4-7 11-7 11 7 11 7-4 7-11 7S1 12 1 12z"></path>
+          <circle cx="12" cy="12" r="3"></circle>
+        </svg>
+      `;
+    }
+    eyeOpen = !eyeOpen;
+  });
+</script>
+
+</body>
+</html>

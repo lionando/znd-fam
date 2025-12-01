@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>contact</title>
+
+     <!-- link css -->
+     <link rel="stylesheet" href="HOME.css" />
+
+     <!-- fonts -->
+     <link rel="preconnect" href="https://fonts.googleapis.com" />
+     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet"/>
+ 
+     <!-- feather icon -->
+     <script src="https://unpkg.com/feather-icons"></script>
+ 
+</head>
+<body>
+        <!-- navbar start -->
+    <nav class="navbar" x-data>
+      <a href="#" class="navbar-logo"><span>Z</span>ND</a>
+
+      <div class="navbar-nav" x-data>
+        <a href="HOMEBASE.html">Home</a>
+      </div>
+      <div class="navbar-extra" >
+        
+        
+      </div>
+    </nav>
+    <!-- navbar end -->
+ <!-- contact -->
+ <section id="contact" class="contact">
+    <h2>Contact <span>Z</span>ND</h2>
+    <p>Kirim pesan jika ada pertanyaan, kritik dan saran!</p>
+
+    <div class="row">
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3950.954396244015!2d112.62430937300398!3d-8.003640192022289!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2dd62807080d0b53%3A0x6d49c6104b0c79b3!2sSMK%20Negeri%201%20Kota%20Malang!5e0!3m2!1sid!2sid!4v1763530872838!5m2!1sid!2sid"
+        class="map"
+        loading="lazy"
+        allowfullscreen
+      ></iframe>
+
+      <form>
+        <div class="input-group">
+          <i data-feather="user"></i>
+          <input type="text" placeholder="Nama" />
+        </div>
+
+        <div class="input-group">
+          <i data-feather="mail"></i>
+          <input type="email" placeholder="Email" />
+        </div>
+
+        <div class="input-group">
+          <i data-feather="phone"></i>
+          <input type="text" placeholder="No HP" />
+        </div>
+
+        <button class="btn" type="button" onclick="sendToWhatsApp()">Kirim Pesan</button>
+
+
+      </form>
+    </div>
+  </section>
+
+  <!-- footer -->
+  <footer>
+    <div class="socials">
+      <a href="#"><i data-feather=""></i></a>
+    </div>
+
+    <div class="links">
+      <a href="HOMEBASE.html">Home</a>
+    </div>
+
+    <div class="credit">
+      <p>Created by <a href="">Nando-Zaid</a>. &copy; 2026.</p>
+    </div>
+  </footer>
+
+  <!-- feather replace -->
+  <script>feather.replace();</script>
+  <script>
+  function sendToWhatsApp() {
+    const name = document.querySelector('input[placeholder="Nama"]').value;
+    const email = document.querySelector('input[placeholder="Email"]').value;
+    const phone = document.querySelector('input[placeholder="No HP"]').value;
+
+    const nomorWa = "6289608681338";
+
+    const pesan = `Pertanyaan, Kritik dan Saran%0A%0ANama: ${name}%0AEmail: ${email}%0ANo HP: ${phone}%0A%0APesan: `;
+
+    const url = `https://wa.me/${nomorWa}?text=${pesan}`;
+
+    window.open(url, "_blank");
+  }
+</script>
+
+
+
+ <!-- script -->
+    <script src="script.js"></script>
+</body>
+</html>

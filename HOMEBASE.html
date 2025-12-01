@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ZND</title>
+
+    <!-- link css -->
+    <link rel="stylesheet" href="HOME.css" />
+
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;400;700&display=swap" rel="stylesheet"/>
+
+    <!-- feather icon -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- alpine js -->
+    <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
+  </head>
+
+  <body>
+    <!-- navbar start -->
+    <nav class="navbar" x-data>
+      <a href="#" class="navbar-logo"><span>Z</span>ND</a>
+
+      <div class="navbar-nav" x-data>
+        <a href="index.html">Login</a>
+        <a href="#home">Home</a>
+        <a href="#about">About ZND</a>
+        <a href="#menu">Our Jacket</a>
+        <a href="#products">Jacket Products</a>
+        <a href="visi.html">Visi dan Misi</a>
+        <a href="contact.html">Contact</a>
+      </div>
+
+      <div class="navbar-extra" >
+        <a href="#" id="search-button"><i data-feather="search"></i></a>
+        <a href="#" id="shopping-bag-button">
+          <i data-feather="shopping-bag"></i>
+        <span class="quantity-badge" x-show="$store.bag.quantity" x-text="$store.bag.quantity"></span>
+        </a>
+        <a href="javascript:void(0)" id="hamburger-menu"><i data-feather="menu"></i></a>
+      </div>
+
+      <!-- search form -->
+      <div class="search-form">
+        <input type="search" id="search-box" placeholder="search here..." />
+        <label for="search-box"><i data-feather="search"></i></label>
+      </div>
+
+      <!-- shopping bag -->
+      <div class="shopping-bag">
+        <template x-for="(item, index) in $store.bag.items" x-key="index">
+        <div class="bag-item">
+          <img :src="`img/product/${item.img}`" :alt="item.name" />
+          <div class="item-detail">
+            <h3 x-text="item.name"></h3>
+            <div class="item-price">
+              <span x-text="rupiah(item.price)"></span> &times;
+              <button id="remove" @click="$store.bag.remove(item.id)">&minus;</button>
+              <span x-text="item.quantity"></span>
+              <button id="add" @click="$store.bag.add(item)">&plus;</button> &equals;
+              <span x-text="rupiah(item.total)"></span>
+            </div>
+          </div>
+        </div>
+        </template>
+        <h4 x-show="!$store.bag.items.length" style="margin-top: 1rem;">Empty</h4>
+        <h4 x-show="$store.bag.items.length">Total : <span x-text="rupiah($store.bag.total)"></span></h4>
+
+        <div class="form-container" x-show="$store.bag.items.length">
+          <form action="" id="checkoutForm">
+            <input type="hidden" name="items" x-model="JSON.stringify($store.bag.items)">
+            <input type="hidden" name="total" x-model="$store.bag.total">
+            <h5>Customer Detail</h5>
+
+            <label for="name">
+              <span>Name</span>
+              <input type="text" name="name" id="name">
+            </label>
+
+            <label for="email">
+              <span>Email</span>
+              <input type="email" name="email" id="email">
+            </label>
+
+            <label for="phone">
+              <span>phone</span>
+              <input type="number" name="phone" id="phone" autocomplete="off">
+            </label>
+
+            <label for="size">
+              <span>Size</span>
+              <select name="size" id="size">
+                  <option value="">-- Pilih Size --</option>
+                  <option value="S">S</option>
+                  <option value="M">M</option>
+                  <option value="L">L</option>
+                  <option value="XL">XL</option>
+              </select>
+            </label>
+
+            <button class="checkout-button disabled" type="submit" id="checkout-button" value="checkout">Checkout</button>
+          </form>
+        </div>
+      </div>
+    </nav>
+    <!-- navbar end -->
+
+    <!-- hero -->
+    <section class="hero" id="home">
+      <main class="content">
+        <h1>OUTERWEAR <span>Z</span>ND</h1>
+        <p>
+          Gaya bukan soal ribet — cukup jadi diri sendiri.<br />
+          ZND hadir dengan outer stylish buat tampilan yang effortless.
+        </p>
+      </main>
+    </section>
+
+    <!-- about -->
+    <section id="about" class="about">
+      <h2>About <span>Z</span>ND</h2>
+
+      <div class="row">
+        <div class="about-img">
+          <img src="about-bg.jpg" alt="ZND Image" />
+        </div>
+
+        <div class="content">
+          <h2>About <span>Z</span>ND</h2>
+          <p>
+            <b>ZND</b> adalah brand outerwear yang fokus pada hoodie dengan konsep <b>simple, trendy, dan minimalist</b>. Nama <b>ZND</b> berasal dari gabungan dua pendirinya,<b> Zaid and Nando</b>, yang sama-sama ingin membangun brand fashion sendiri.
+
+          </p>
+          <p>Brand ini berawal dari ide sederhana lalu dikembangkan melalui proses rebranding, mulai dari memilih bahan, menentukan desain, hingga produksi dasar seperti sablon dan bordir. <b>ZND</b> dibuat untuk menghadirkan outer yang nyaman, clean, dan mudah dipadukan.</p>
+          <p>
+           <b>ZND</b> percaya bahwa kesederhanaan dapat menjadi gaya yang kuat dan berkarakter.
+          </p> 
+        </div>
+      </div>
+    </section>
+
+    <!-- menu section -->
+    <section id="menu" class="menu">
+      <h2>Jacket <span>Z</span>ND</h2>
+      <p>
+        Koleksi ZND mengutamakan kesederhanaan dan kenyamanan.
+        Hoodie boxy kami dirancang dengan bahan lembut dan detail rapi.
+      </p>
+
+      <div class="row">
+
+        <div class="menu-card">
+          <img src="hitamzip.jpeg" class="menu-znd" />
+          <h3 class="menu-card-title">ZND Zip Core Hoodie - Shadow Black</h3>
+          <p class="menu-card-price">IDR 200K</p>
+        </div>
+
+        <div class="menu-card">
+          <img src="putihzip.jpeg" class="menu-znd" />
+          <h3 class="menu-card-title">ZND Zip Core Hoodie - Cloud White</h3>
+          <p class="menu-card-price">IDR 200K</p>
+        </div>
+
+        <div class="menu-card">
+          <img src="hitam.jpeg" class="menu-znd" />
+          <h3 class="menu-card-title">ZND Mono Boxy Hoodie - Onyx Black</h3>
+          <p class="menu-card-price">IDR 190K</p>
+        </div>
+
+        <div class="menu-card">
+          <img src="putih.jpeg" class="menu-znd" />
+          <h3 class="menu-card-title">ZND Mono Boxy Hoodie - Clean White</h3>
+          <p class="menu-card-price">IDR 190K</p>
+        </div>
+
+      </div>
+    </section>
+
+
+    <!-- products section -->
+    <section id="products" class="products" x-data="product">
+      <h2>Produk <span>Z</span>ND</h2>
+      <p>Pilih hoodie favoritmu dan checkout dengan cepat!</p>
+
+      <div class="row">
+        <template x-for="(item, index) in items" :key="index">
+          <div class="product-card">
+            <div class="product-icons">
+              <a href="#" @click.prevent="$store.bag.add(item)">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="none"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="feather-sprite.svg#shopping-bag" />
+                </svg>
+              </a>
+            </div>
+
+            <div class="product-image">
+              <img :src="item.img" :alt="item.name" />
+            </div>
+
+            <div class="product-content">
+              <h3 x-text="item.name"></h3>
+
+              <div class="product-stars">
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="feather-sprite.svg#star" />
+                </svg>
+                <svg
+                  width="24"
+                  height="24"
+                  fill="currentColor"
+                  stroke="currentColor"
+                  stroke-width="2"
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                >
+                  <use href="feather-sprite.svg#star" />
+                </svg>
+              </div>
+
+              <div class="product-price">
+                <span x-text="rupiah(item.price)"></span>
+              </div>
+            </div>
+          </div>
+        </template>
+      </div>
+    </section>
+
+    <!-- footer -->
+  <footer>
+    <div class="socials">
+      <a href="#"><i data-feather=""></i></a>
+    </div>
+
+    <div class="links">
+      <a href="#home">Home</a>
+      <a href="#about">About ZND</a>
+      <a href="#menu">Our Jacket</a>
+      <a href="#products">Jacket Products</a>
+    </div>
+
+    <div class="credit">
+      <p>Created by <a href="">Nando-Zaid</a>. &copy; 2026.</p>
+    </div>
+  </footer>
+
+  
+
+    <!-- feather replace -->
+    <script>feather.replace();</script>
+
+    <!-- script -->
+    <script src="script.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>

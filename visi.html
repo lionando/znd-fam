@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Visi Misi | ZND</title>
+<link rel="stylesheet" href="HOME.css">
+  <style>
+    /* === GLOBAL === */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #0b0b0b;
+      color: white;
+      min-height: 100vh;
+    }
+
+    /* === SECTION CONTENT === */
+    .about {
+      padding: 60px 20px;
+      display: flex;
+      justify-content: center;
+    }
+
+    .content-card {
+      max-width: 850px;
+      background: #111;
+      padding: 40px 45px;
+      border-radius: 20px;
+      border: 1px solid #2d2d2d;
+      box-shadow: 0 0 25px rgba(255, 215, 0, 0.05);
+      animation: fadeIn 0.9s ease;
+    }
+
+    /* Animasi Fade-in elegan */
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === TYPOGRAPHY === */
+    .title {
+      font-size: 2.4rem;
+      font-weight: 700;
+      margin-bottom: 25px;
+      color: white;
+      text-align: center;
+    }
+
+    .title span {
+      color: #ffd700;
+    }
+
+    .sub-title {
+      font-size: 1.3rem;
+      font-weight: 600;
+      margin-top: 20px;
+      margin-bottom: 10px;
+      color: #ffd700;
+    }
+
+    .text {
+      font-size: 1rem;
+      color: #d7d7d7;
+      line-height: 1.7;
+    }
+
+    /* === LIST === */
+    .list {
+      margin-top: 10px;
+      padding-left: 20px;
+    }
+
+    .list li {
+      margin-bottom: 12px;
+      font-size: 1rem;
+      color: #e5e5e5;
+      line-height: 1.65;
+      position: relative;
+    }
+
+    /* bullet custom */
+    .list li::before {
+      content: "•";
+      position: absolute;
+      left: -18px;
+      color: #ffd700;
+      font-size: 1.3rem;
+    }
+
+    /* === RESPONSIVE === */
+    @media (max-width: 600px) {
+      .navbar {
+        padding: 15px 25px;
+      }
+
+      .content-card {
+        padding: 30px 25px;
+      }
+
+      .title {
+        font-size: 1.9rem;
+      }
+    }
+  </style>
+
+  <!-- Feather Icons -->
+  <script src="https://unpkg.com/feather-icons"></script>
+</head>
+
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar">
+    <a href="#" class="navbar-logo"><span>Z</span>ND</a>
+
+    <div class="navbar-nav">
+      <a href="HOMEBASE.html">Home</a>
+    </div>
+
+    <div class="navbar-extra">
+      <a href="javascript:void(0)" id="hamburger-menu"><i data-feather="menu"></i></a>
+    </div>
+  </nav>
+
+  <!-- CONTENT -->
+  <section id="about" class="about">
+    <div class="content-card">
+      <h1 class="title">Visi & Misi <span>Z</span>ND</h1>
+
+      <h2 class="sub-title">Visi</h2>
+      <p class="text">
+        Menjadi brand outerwear lokal yang dikenal karena desain modern, minimalis, dan berkualitas tinggi,
+        serta mampu menjadi pilihan utama anak muda Indonesia dalam mengekspresikan gaya dan percaya diri.
+      </p>
+
+      <h2 class="sub-title">Misi</h2>
+      <ul class="list">
+        <li>Menghadirkan outerwear keren, elegan, dan nyaman dipakai di berbagai aktivitas.</li>
+        <li>Mengutamakan kualitas bahan dan detail untuk kenyamanan maksimal.</li>
+        <li>Menciptakan identitas fashion anak muda dengan konsep streetwear minimalis.</li>
+        <li>Mengembangkan inovasi desain dan koleksi outerwear secara berkelanjutan.</li>
+        <li>Memanfaatkan website dan media digital untuk menjangkau pasar lebih luas.</li>
+        <li>Membangun hubungan baik dengan pelanggan melalui pelayanan responsif dan profesional.</li>
+      </ul>
+    </div>
+  </section>
+
+  <footer>
+    <div class="socials">
+      <a href="#"><i data-feather=""></i></a>
+    </div>
+
+    <div class="links">
+      <a href="HOMEBASE.html">Home</a>
+    </div>
+
+    <div class="credit">
+      <p>Created by <a href="">Nando-Zaid</a>. &copy; 2026.</p>
+    </div>
+  </footer>
+
+  <script>feather.replace();</script>
+  <script src="script.js"></script>
+
+</body>
+</html>
